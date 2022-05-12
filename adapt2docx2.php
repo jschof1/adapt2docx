@@ -33,15 +33,15 @@
 
 	for ($i=0;$i<count($ids);$i++) {
 		$component = $parts[$ids[$i]];
-		//if ($component["_component"] != "graphic") {
-			output($component);
-			
-		//}
+		output($component);
 	}
 
 	echo '</head></html>';
 
 function output($component) {
+	if (!is_array($component)) {
+		return;
+	}
 	if ($component["_component"] == "text" || $component["_component"] == "media" || $component["_component"] == "media-autoplay" || $component["_component"] == "graphic") {
 		outputText($component);
 	} elseif (@array_key_exists("_canShowFeedback", $component)) {
